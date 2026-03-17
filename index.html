@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.T. Bass — Author</title>
+<meta name="description" content="S.T. Bass is the author of OKGO, a seven-volume literary science fiction cycle where sound is territory, frequency is memory, and fabric becomes cosmos.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0e;
+    --text: #e8e4dd;
+    --muted: #8a8477;
+    --accent: #c4a46c;
+    --blue: #2a3f5f;
+    --pulse: 7s;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ═══ PULSE ANIMATION — 7 seconds ═══ */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.03; }
+    50% { opacity: 0.08; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes breathe {
+    0%, 100% { letter-spacing: 0.15em; }
+    50% { letter-spacing: 0.25em; }
+  }
+
+  @keyframes lineGrow {
+    from { width: 0; }
+    to { width: 60px; }
+  }
+
+  /* ═══ BACKGROUND TEXTURE ═══ */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(42, 63, 95, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(196, 164, 108, 0.06) 0%, transparent 50%);
+    animation: pulse var(--pulse) ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ═══ NOISE GRAIN ═══ */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ═══ LAYOUT ═══ */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  .hero-pre {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+    animation: fadeUp 1.2s ease-out 0.3s both, breathe var(--pulse) ease-in-out infinite;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    animation: fadeUp 1.2s ease-out 0.6s both;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 60px;
+    animation: fadeUp 1.2s ease-out 0.9s both;
+  }
+
+  .hero-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--muted), transparent);
+    margin: 0 auto;
+    animation: fadeUp 1.2s ease-out 1.2s both;
+  }
+
+  /* ═══ SECTIONS ═══ */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 60px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 30px;
+    letter-spacing: 0.01em;
+  }
+
+  h2 em { 
+    font-style: italic; 
+    color: var(--accent); 
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+
+  p strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ═══ THE WORK ═══ */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .work-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(138, 132, 119, 0.12);
+  }
+
+  .work-item-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .work-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--text);
+    text-align: right;
+  }
+
+  /* ═══ QUOTE BLOCK ═══ */
+  .quote {
+    border-left: 2px solid var(--accent);
+    padding: 20px 0 20px 28px;
+    margin: 40px 0;
+  }
+
+  .quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* ═══ PULSE DOT ═══ */
+  .toc {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 50px;
+  }
+
+  .toc-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse var(--pulse) ease-in-out infinite;
+  }
+
+  .toc-text {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ═══ CONTACT ═══ */
+  .contact-section {
+    min-height: 60vh;
+  }
+
+  .contact-email {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 4vw, 32px);
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196, 164, 108, 0.3);
+    padding-bottom: 4px;
+    transition: border-color 0.3s;
+  }
+
+  .contact-email:hover {
+    border-color: var(--accent);
+  }
+
+  /* ═══ FOOTER ═══ */
+  footer {
+    text-align: center;
+    padding: 60px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    font-size: 11px;
+    color: rgba(138, 132, 119, 0.5);
+    letter-spacing: 0.1em;
+    margin: 0 auto;
+  }
+
+  /* ═══ SEPARATOR ═══ */
+  .sep {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--muted), transparent);
+    margin: 60px 0;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 600px) {
+    section { padding: 60px 0; min-height: auto; }
+    .hero { min-height: 100vh; }
+    .container { padding: 0 20px; }
+    .work-item { flex-direction: column; gap: 4px; }
+    .work-item-value { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pre">Seven seconds. Toc.</div>
+    <h1 class="hero-name"><em>S.T.</em> Bass</h1>
+    <div class="hero-sub">Writer &bull; Painter &bull; Composer</div>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- THE WORK -->
+  <section>
+    <div class="section-label">The Work</div>
+    <h2>OKGO — <em>The Silence<br>of Instruments</em></h2>
+    <p>In a star system where music is architecture, transport and memory, a totalitarian administration imposes an aerosol that renders sound optional. Silence thickens. The instruments fall silent.</p>
+    <p>A deposed leader follows a clandestine signal to Earth — to Salerno, to the kitchen of an old painter mapping a star system without knowing it. In the Sistine Chapel, she feels the same vibration as in the abysses of her ocean. <strong>The frequency crosses worlds.</strong></p>
+
+    <div class="quote">
+      <p>The silence did not extinguish the music. The silence compressed it.</p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-item">
+        <span class="work-item-label">Genre</span>
+        <span class="work-item-value">Literary Science Fiction</span>
+      </div>
+      <div class="work-item">
+        <span class="work-item-label">Volume</span>
+        <span class="work-item-value">Le Silence des Instruments — Vol. B</span>
+      </div>
+      <div class="work-item">
+        <span class="work-item-label">Cycle</span>
+        <span class="work-item-value">7 volumes — 1,000,000+ words</span>
+      </div>
+      <div class="work-item">
+        <span class="work-item-label">Language</span>
+        <span class="work-item-value">French (translations available)</span>
+      </div>
+      <div class="work-item">
+        <span class="work-item-label">Status</span>
+        <span class="work-item-value">Complete manuscript</span>
+      </div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-dot"></div>
+      <span class="toc-text">Seven seconds. The pulse of Asaboka.</span>
+    </div>
+  </section>
+
+  <!-- THE AUTHOR -->
+  <section>
+    <div class="section-label">The Author</div>
+    <h2>Shugo Tenshi,<br>writing as <em>S.T. Bass</em></h2>
+    <p>Trained in law in Paris and California — intellectual property, contracts, the language of investors by day. By night, for twenty years: <strong>painting, writing, textile composition, DJing.</strong></p>
+    <p>Before law, five years at Zara near the Opéra Garnier — where he learned, in the rustling of fabric and the gaze of women before a mirror, what books do not teach: how a garment falls, lives, tells.</p>
+    <p>He comes from a family of painters, seamstresses and musicians. His heritage is <strong>African</strong> — color as language, pattern as identity. <strong>Italian</strong> — structure, respect for materials, the architecture of the body. <strong>Japanese</strong> — precision, sewing as discipline. And <strong>Parisian</strong> — not a style, but a way of being.</p>
+    <p>In his music, he blends deep house, neo soul, Italian classics, baile funk, RnB, rumba, bouyon. Rhythms that cross genres because groove always finds those who know how to hear it.</p>
+    <p>OKGO is the synthesis. <strong>A saga where sound is territory, frequency is memory, fabric becomes cosmos.</strong></p>
+
+    <div class="sep"></div>
+
+    <p style="font-style: italic; color: var(--accent); font-family: 'Cormorant Garamond', serif; font-size: 17px;">He lives and works where the signal is strongest.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="section-label">Contact</div>
+    <h2>The manuscript<br>is <em>ready.</em></h2>
+    <p>For publishing inquiries, film & television adaptation, or translation rights:</p>
+    <br>
+    <a href="mailto:VOTRE@EMAIL.COM" class="contact-email">VOTRE@EMAIL.COM</a>
+
+    <div class="toc" style="margin-top: 60px;">
+      <div class="toc-dot"></div>
+      <span class="toc-text">Toc.</span>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 S.T. Bass. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
